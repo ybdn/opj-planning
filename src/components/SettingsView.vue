@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 import { useStore } from '../composables/useStore.js'
+import ManualDialog from './ManualDialog.vue'
+
+const manualOpen = ref(false)
 
 const {
   state,
@@ -51,6 +54,16 @@ function confirmDelete (id) {
 
 <template>
   <h1>Réglages</h1>
+
+  <div class="card" style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+    <div>
+      <strong>Mode d'emploi</strong>
+      <div class="muted" style="font-size: 0.88em">Comment utiliser l'app, les phases, le pomodoro, la méthode.</div>
+    </div>
+    <button class="primary" @click="manualOpen = true">📖 Ouvrir</button>
+  </div>
+
+  <ManualDialog :open="manualOpen" @close="manualOpen = false" />
 
   <h2>Examens</h2>
   <div class="card">
